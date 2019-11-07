@@ -1,0 +1,19 @@
+env:
+  browser: true
+  node: true
+  es6: true
+parser: esprima
+extends:
+  - eslint:recommended
+rules:
+  semi:
+    - error
+    - always
+  no-extra-semi: off
+  quotes:
+    - error
+    - single
+    - avoidEscape: true
+  no-var: error
+  space-in-parens: 2
+  prefer-arrow-callback: error
