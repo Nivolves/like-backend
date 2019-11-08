@@ -79,7 +79,6 @@ app.post('/history', (req, res) => {
 
 app.post('/like', (req, res) => {
   const values = [req.body.id, req.body.userId];
-
   pool.connect().then(client =>
     client
       .query(INSERT_LIKE, values)
@@ -95,8 +94,8 @@ app.post('/like', (req, res) => {
   );
 });
 
-app.delete('/like/:id', (req, res) => {
-  const values = [req.params.id];
+app.delete('/like', (req, res) => {
+  const values = [req.body.id, req.body.userId];
 
   pool.connect().then(client =>
     client
