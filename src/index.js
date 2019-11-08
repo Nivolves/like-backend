@@ -24,13 +24,15 @@ app.use(bodyParser.json());
 
 require('dotenv').config();
 
-app.get('/history', (_, res) => {
+app.get('/history/:id', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
+  const values = [req.params.id];
+
   pool.connect().then(client =>
     client
-      .query(GET_HISTORY)
+      .query(GET_HISTORY, values)
       .then(result => {
         res.send(result.rows);
       })
