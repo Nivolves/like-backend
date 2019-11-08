@@ -28,7 +28,7 @@ app.get('/history/:id', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-  const values = [ req.params.id ];
+  const values = [req.params.id];
 
   pool.connect().then(client =>
     client
@@ -38,8 +38,8 @@ app.get('/history/:id', (req, res) => {
       })
       .catch(err => {
         const { code } = err;
-        if (ERRORS[ code ]) {
-          res.sendStatus(ERRORS[ err.code ]);
+        if (ERRORS[code]) {
+          res.sendStatus(ERRORS[err.code]);
         } else {
           res.sendStatus(500);
         }
@@ -51,7 +51,7 @@ app.post('/history', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-  const values = [ req.body.id, req.body.userId, req.body.query ];
+  const values = [req.body.id, req.body.userId, req.body.query];
 
   pool.connect().then(client =>
     client
@@ -59,8 +59,8 @@ app.post('/history', (req, res) => {
       .then(() => res.sendStatus(200))
       .catch(err => {
         const { code } = err;
-        if (ERRORS[ code ]) {
-          res.sendStatus(ERRORS[ err.code ]);
+        if (ERRORS[code]) {
+          res.sendStatus(ERRORS[err.code]);
         } else {
           res.sendStatus(500);
         }
@@ -72,7 +72,7 @@ app.post('/like', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-  const values = [ req.body.id, req.body.userId ];
+  const values = [req.body.id, req.body.userId];
 
   pool.connect().then(client =>
     client
@@ -80,8 +80,8 @@ app.post('/like', (req, res) => {
       .then(() => res.sendStatus(200))
       .catch(err => {
         const { code } = err;
-        if (ERRORS[ code ]) {
-          res.sendStatus(ERRORS[ err.code ]);
+        if (ERRORS[code]) {
+          res.sendStatus(ERRORS[err.code]);
         } else {
           res.sendStatus(500);
         }
@@ -93,7 +93,7 @@ app.delete('/like/:id', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-  const values = [ req.params.id ];
+  const values = [req.params.id];
 
   pool.connect().then(client =>
     client
@@ -107,7 +107,7 @@ app.get('/likes/:id', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-  const values = [ req.params.id ];
+  const values = [req.params.id];
 
   pool.connect().then(client =>
     client
@@ -117,8 +117,8 @@ app.get('/likes/:id', (req, res) => {
       })
       .catch(err => {
         const { code } = err;
-        if (ERRORS[ code ]) {
-          res.sendStatus(ERRORS[ err.code ]);
+        if (ERRORS[code]) {
+          res.sendStatus(ERRORS[err.code]);
         } else {
           res.sendStatus(500);
         }
@@ -130,7 +130,7 @@ app.post('/user', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
 
-  const values = [ req.body.id ];
+  const values = [req.body.id];
 
   pool.connect().then(client =>
     client
@@ -138,8 +138,8 @@ app.post('/user', (req, res) => {
       .then(() => res.sendStatus(200))
       .catch(err => {
         const { code } = err;
-        if (ERRORS[ code ]) {
-          res.sendStatus(ERRORS[ err.code ]);
+        if (ERRORS[code]) {
+          res.sendStatus(ERRORS[err.code]);
         } else {
           res.sendStatus(500);
         }
@@ -148,5 +148,5 @@ app.post('/user', (req, res) => {
 });
 
 app.listen(process.env.PORT, () =>
-  console.log(`Listening on port ${ process.env.PORT }!`)
+  console.log(`Listening on port ${process.env.PORT}!`)
 );
