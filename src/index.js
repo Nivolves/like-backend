@@ -20,14 +20,26 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With,content-type'
+  );
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  next();
+});
+
 app.use(bodyParser.json());
 
 require('dotenv').config();
 
 app.get('/history/:id', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
   const values = [req.params.id];
 
   pool.connect().then(client =>
@@ -48,9 +60,6 @@ app.get('/history/:id', (req, res) => {
 });
 
 app.post('/history', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
   const values = [req.body.id, req.body.userId, req.body.query];
 
   pool.connect().then(client =>
@@ -69,9 +78,6 @@ app.post('/history', (req, res) => {
 });
 
 app.post('/like', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
   const values = [req.body.id, req.body.userId];
 
   pool.connect().then(client =>
@@ -90,9 +96,6 @@ app.post('/like', (req, res) => {
 });
 
 app.delete('/like/:id', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
   const values = [req.params.id];
 
   pool.connect().then(client =>
@@ -104,9 +107,6 @@ app.delete('/like/:id', (req, res) => {
 });
 
 app.get('/likes/:id', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
   const values = [req.params.id];
 
   pool.connect().then(client =>
@@ -127,9 +127,6 @@ app.get('/likes/:id', (req, res) => {
 });
 
 app.post('/user', (req, res) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-
   const values = [req.body.id];
 
   pool.connect().then(client =>
